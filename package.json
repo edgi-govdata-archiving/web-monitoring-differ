@@ -1,7 +1,7 @@
 {
   "name": "differ",
   "version": "1.0.0",
-  "description": "",
+  "description": "Diffing service for the website monitoring project",
   "main": "index.js",
   "scripts": {
     "db:init": "babel-node -- ./db/init.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:edgi-govdata-archiving/differ.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Westley Argentum Hennigh-Palermo",
+  "license": "MIT",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/edgi-govdata-archiving/differ/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/edgi-govdata-archiving/differ",
   "dependencies": {
     "bluebird": "3.4.1",
     "body-parser": "^1.16.0",
