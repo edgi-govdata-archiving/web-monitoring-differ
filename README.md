@@ -1,5 +1,5 @@
 
-#### Diffing service for the website monitoring project
+## Diffing service for the website monitoring project
 
 This project is a work in progress built in the space of a few hours at the NYC EDGI Data Refuge event.
 
