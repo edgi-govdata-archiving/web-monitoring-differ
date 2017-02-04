@@ -21,7 +21,10 @@
   "homepage": "",
   "dependencies": {
     "bluebird": "3.4.1",
+    "body-parser": "^1.16.0",
+    "child-process-promise": "^2.2.0",
     "cors": "2.7.1",
+    "diff2html": "^2.0.12",
     "express": "4.14.0",
     "express-graphql": "0.5.3",
     "fast-csv": "^2.3.0",
@@ -30,14 +33,15 @@
     "moment": "^2.16.0",
     "morgan": "1.7.0",
     "mori": "^0.3.2",
-    "multer": "1.2.0",
+    "multer": "^1.2.0",
     "passport": "0.3.2",
     "passport-http": "0.3.0",
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
     "postgraphql": "^2.3.0",
     "sequelize": "^3.24.8",
-    "sequelize-fixtures": "^0.5.5"
+    "sequelize-fixtures": "^0.5.5",
+    "tmp": "0.0.31"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

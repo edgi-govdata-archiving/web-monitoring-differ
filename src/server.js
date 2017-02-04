@@ -5,8 +5,11 @@ import cors from 'cors';
 import morgan from 'morgan';
 import path from 'path';
 import fs from 'fs';
+import bodyParser from 'body-parser';
+// import multer from 'multer';
 
 import healthCheck from './HealthCheck';
+import diff from './Diff';
 
 const app = express();
 const port = process.env.TERROR_PORT || 8000;
@@ -23,6 +26,9 @@ const ERROR_LOG_PATH = process.env.ERROR_LOG_PATH || path.join(__dirname, 'logs'
 
 app.use(helmet());
 app.use(cors(corsOpts));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(multer());
 
 if (isProduction) {
   const accessLogStream = fs.createWriteStream(ACCESS_LOG_PATH, { flags: 'a' });
@@ -39,6 +45,8 @@ if (isProduction) {
 }
 
 app.get('/health.json', healthCheck);
+
+app.post('/diff', diff);
 
 console.log(`
 -------------
