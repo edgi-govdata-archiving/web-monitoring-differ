@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb"],
+  "rules": {
+    "semi": ["error", "always", {"omitLastInOneLineBlock": true}],
+    "no-underscore-dangle": 0,
+    "no-console": 0,
+    "consistent-return": 1,
+    "arrow-body-style": ["warn", "as-needed"],
+    "comma-dangle": 0,
+    "array-bracket-spacing": ["error", "never", { "singleValue": true }],
+    "generator-star-spacing": 0
+  }
+}
