@@ -26,12 +26,17 @@ export default async (req, res) => {
     `git diff --ignore-all-space --no-index "${blob1File.name}" "${blob2File.name}"`,
     { maxBuffer: oneGigInBytes - 1 },
     (err, stdout) => {
+      // clean up temp files
+      blob1File.removeCallback();
+      blob2File.removeCallback();
+
       // git diff returns 1 when it found a difference
-      if (err && err.code == 1) {
-          err = null;
+      if (err && err.code != 1) {
+          console.error('ERROR RUNNING GIT DIFF:', err);
+          return res.status(500).send('Error generating diff...');
       }
 
-      const html = Diff2Html.getPrettyHtml(stdout, { inputFormat: 'diff' })
+      const html = Diff2Html.getPrettyHtml(stdout, { inputFormat: 'diff' });
 
       res.status(200).send({ blob1, blob2, html });
     }
