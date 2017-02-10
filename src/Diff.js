@@ -1,20 +1,6 @@
 
+import { SOURCE, HTML_OUT, DIFFER } from './constants';
 import GitDiff from './GitDiff';
-
-const SOURCE = {
-  URL: 'url',
-  TEXT: 'text'
-}
-
-const HTML_OUT = {
-  WITH_HEAD: 2,
-  NO_HEAD: 1,
-  NO_HTML: 0
-}
-
-const DIFFER = {
-  GIT: 'git'
-}
 
 const DIFFER_SERVICE = {
   'git': GitDiff
@@ -41,8 +27,12 @@ export default async (req, res) => {
     return res.status(500).send('URL source not supported yet, sorry...');
   }
 
+  const options = {
+    html
+  }
+
   // get the diff
-  const diff = await differService(blob1, blob2);
+  const diff = await differService(blob1, blob2, options);
 
   return res.status(200).send({ url1, url2, diff });
 }

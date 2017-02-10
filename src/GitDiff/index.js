@@ -5,6 +5,9 @@ import Promise from 'bluebird';
 const Diff2Html = require('diff2html').Diff2Html;
 const exec = require('child_process').exec;
 
+import { HTML_OUT } from '../constants';
+
+const htmlHead = fs.readFileSync('./src/GitDiff/head.html');
 const oneGigInBytes = 1073741824;
 
 export default function gitDiff(blob1, blob2, options) {
@@ -30,10 +33,24 @@ export default function gitDiff(blob1, blob2, options) {
             return reject(err);
         }
 
-        const html = Diff2Html.getPrettyHtml(stdout, { inputFormat: 'diff' });
+        let output = stdout;
+        options.html != HTML_OUT.NO_HTML && (output = Diff2Html.getPrettyHtml(stdout, { inputFormat: 'diff' }));
+        options.html == HTML_OUT.WITH_HEAD && (output = buildDiffHtml(output));
 
-        return resolve(html);
+        return resolve(output);
       }
     );
   });
+}
+
+function buildDiffHtml(body) {
+  return `
+    <!doctype html>
+    <html lang="en">
+      ${htmlHead}
+      <body style="text-align: center; font-family: \'Source Sans Pro\',sans-serif;">
+        ${body}
+      </body>
+    </html>
+  `;
 }
