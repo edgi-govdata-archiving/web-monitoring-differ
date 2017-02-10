@@ -29,7 +29,7 @@ export default (blob1, blob2, options) => {
         blob2File.removeCallback();
 
         // git diff returns 1 when it found a difference
-        if (err && err.code == 1) {
+        if (err && err.code != 1) {
             return reject(err);
         }
 

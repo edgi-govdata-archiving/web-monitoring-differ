@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/edgi-govdata-archiving/differ",
   "dependencies": {
+    "axios": "^0.15.3",
     "bluebird": "3.4.1",
     "body-parser": "^1.16.0",
     "child-process-promise": "^2.2.0",

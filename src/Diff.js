@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 import { SOURCE, HTML_OUT, DIFFER } from './constants';
 import GitDiff from './GitDiff';
@@ -20,21 +21,22 @@ export default async (req, res) => {
     `);
   }
 
-  // get the blobs we need to compare
-  let blob1 = url1;
-  let blob2 = url2;
-  if (source === SOURCE.URL) {
-    return res.status(500).send('URL source not supported yet, sorry...');
-  }
-
-  const options = {
-    html
-  };
-
   try {
+    // get the blobs we need to compare
+    let blob1 = url1;
+    let blob2 = url2;
+    if (source === SOURCE.URL) {
+      blob1 = (await axios.get(url1)).data;
+      blob2 = (await axios.get(url2)).data;
+    }
+
+    const options = {
+      html
+    };
+
     // get the diff
     const diff = await differService(blob1, blob2, options);
-    return res.status(200).send({ url1, url2, diff });
+    return res.status(200).send(diff)//{ url1, url2, diff });
 
   } catch (err) {
     return res.status(500).send(err);
