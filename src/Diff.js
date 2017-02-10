@@ -4,7 +4,7 @@ import GitDiff from './GitDiff';
 
 const DIFFER_SERVICE = {
   'git': GitDiff
-}
+};
 
 export default async (req, res) => {
   const { url1, url2 } = req.body;
@@ -29,10 +29,15 @@ export default async (req, res) => {
 
   const options = {
     html
+  };
+
+  try {
+    // get the diff
+    const diff = await differService(blob1, blob2, options);
+    return res.status(200).send({ url1, url2, diff });
+
+  } catch (err) {
+    return res.status(500).send(err);
   }
 
-  // get the diff
-  const diff = await differService(blob1, blob2, options);
-
-  return res.status(200).send({ url1, url2, diff });
 }

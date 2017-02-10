@@ -10,7 +10,7 @@ import { HTML_OUT } from '../constants';
 const htmlHead = fs.readFileSync('./src/GitDiff/head.html');
 const oneGigInBytes = 1073741824;
 
-export default function gitDiff(blob1, blob2, options) {
+export default (blob1, blob2, options) => {
   // write out blobs to temp files to make it
   // easier + safer to diff them
   const blob1File = tmp.fileSync();
@@ -29,7 +29,7 @@ export default function gitDiff(blob1, blob2, options) {
         blob2File.removeCallback();
 
         // git diff returns 1 when it found a difference
-        if (err && err.code != 1) {
+        if (err && err.code == 1) {
             return reject(err);
         }
 
