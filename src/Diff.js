@@ -36,7 +36,7 @@ export default async (req, res) => {
 
     // get the diff
     const diff = await differService(blob1, blob2, options);
-    return res.status(200).send(diff)//{ url1, url2, diff });
+    return res.status(200).send({ url1, url2, diff });
 
   } catch (err) {
     return res.status(500).send(err);

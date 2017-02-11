@@ -26,3 +26,20 @@ Currently unsupported:
 |-----------|-------------|
 | `diffmode` | (optional)	Default: `0`. <br>`0`=No pre-processing, <br>`1`=extra white spaces removed, <br>`2`=[\s]* are removed,<br>`3`=HTML tags are removed for full-text comparison |
 | `snippet`  (optional)	 | Default: `200` (characters). It will generate snippets of changes. |
+
+## Output
+
+The differ will return an object that looks like:
+
+```
+{
+  "url1": ...,
+  "url2": ...,
+  "diff": ...
+}
+```
+Where `diff` will be either the raw git diff or a blob of html depending what you specified as the `html` parameter.
+
+Example:
+
+![example diff](./assets/example-diff.png)
