@@ -15,8 +15,8 @@ Use this service to compare versions of web pages. It aims to replicate the Page
 | Parameter	| Description |
 |-----------|-------------|
 | `source` (optional)|	Default: `auto`. <br>`auto`=url1 and url2 can be either URLs or text. <br>`url`=url1 and url2 must be URL of the target document. <br>`text`=url1 and url2 contain text to compare. |
-| `url1` |	The source URL or HTML |
-| `url2` |	The target URL or HTML |
+| `url1` |	The source URL or text |
+| `url2` |	The target URL or text |
 | `html`  (optional) |	Default: `1`. <br>`2`=HTML with HEAD, <br>`1`=HTML without HEAD, <br>`0`=False (no HTML output). |
 | `differ` (optional) | Default: `git`. <br> Currently only `git` diff is supported |
 
