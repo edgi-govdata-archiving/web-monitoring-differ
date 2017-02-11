@@ -1,7 +1,8 @@
 
 export const SOURCE = {
   URL: 'url',
-  TEXT: 'text'
+  TEXT: 'text',
+  AUTO: 'auto'
 };
 
 export const HTML_OUT = {

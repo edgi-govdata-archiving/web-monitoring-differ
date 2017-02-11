@@ -14,7 +14,7 @@ Use this service to compare versions of web pages. It aims to replicate the Page
 
 | Parameter	| Description |
 |-----------|-------------|
-| `source` (optional)|	Default: `url`. <br>`url`=url1 and url2 must be URL of the target document. <br>`text`=url1 and url2 contains HTML text document itself. |
+| `source` (optional)|	Default: `auto`. <br>`auto`=url1 and url2 can be either URLs or text. <br>`url`=url1 and url2 must be URL of the target document. <br>`text`=url1 and url2 contain text to compare. |
 | `url1` |	The source URL or HTML |
 | `url2` |	The target URL or HTML |
 | `html`  (optional) |	Default: `1`. <br>`2`=HTML with HEAD, <br>`1`=HTML without HEAD, <br>`0`=False (no HTML output). |
@@ -29,16 +29,7 @@ Currently unsupported:
 
 ## Output
 
-The differ will return an object that looks like:
-
-```
-{
-  "url1": ...,
-  "url2": ...,
-  "diff": ...
-}
-```
-Where `diff` will be either the raw git diff or a blob of html depending what you specified as the `html` parameter.
+The differ will return the content of the diff, either as a raw git diff string or a blob of html depending what you specified as the `html` parameter.
 
 Example:
 

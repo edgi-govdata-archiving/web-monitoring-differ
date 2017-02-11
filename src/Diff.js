@@ -1,4 +1,5 @@
 import axios from 'axios';
+import isUrl from 'is-url';
 
 import { SOURCE, HTML_OUT, DIFFER } from './constants';
 import GitDiff from './GitDiff';
@@ -9,7 +10,7 @@ const DIFFER_SERVICE = {
 
 export default async (req, res) => {
   const { url1, url2 } = req.body;
-  const source = req.body.source || SOURCE.URL;
+  const source = req.body.source || SOURCE.AUTO;
   const html = req.body.html || HTML_OUT.NO_HEAD;
   const differ = req.body.differ || DIFFER.GIT;
   const differService = DIFFER_SERVICE[differ];
@@ -25,9 +26,9 @@ export default async (req, res) => {
     // get the blobs we need to compare
     let blob1 = url1;
     let blob2 = url2;
-    if (source === SOURCE.URL) {
-      blob1 = (await axios.get(url1)).data;
-      blob2 = (await axios.get(url2)).data;
+    if (source != SOURCE.TEXT) {
+      isUrl(url1) && (blob1 = (await axios.get(url1)).data);
+      isUrl(url2) && (blob2 = (await axios.get(url2)).data);
     }
 
     const options = {
@@ -36,10 +37,9 @@ export default async (req, res) => {
 
     // get the diff
     const diff = await differService(blob1, blob2, options);
-    return res.status(200).send({ url1, url2, diff });
+    return res.status(200).send(diff);
 
   } catch (err) {
     return res.status(500).send(err);
   }
-
 }
