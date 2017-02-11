@@ -24,7 +24,7 @@ Currently unsupported:
 
 | Parameter	| Description |
 |-----------|-------------|
-| `diffmode` | (optional)	Default: `0`. <br>`0`=No pre-processing, <br>`1`=extra white spaces removed, <br>`2`=[\s]* are removed,<br>`3`=HTML tags are removed for full-text comparison |
+| `diffmode` (optional) | Default: `0`. <br>`0`=No pre-processing, <br>`1`=extra white spaces removed, <br>`2`=[\s]* are removed,<br>`3`=HTML tags are removed for full-text comparison |
 | `snippet`  (optional)	 | Default: `200` (characters). It will generate snippets of changes. |
 
 ## Output
